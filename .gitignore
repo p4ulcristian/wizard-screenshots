@@ -1,0 +1,3 @@
+.shadow-cljs
+resources/backend/node_modules
+resources/backend/.DS_Store

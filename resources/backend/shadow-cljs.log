@@ -1,0 +1,214 @@
+------------------------------------------------------------------------------
+
+   WARNING: shadow-cljs not installed in project.
+   See https://shadow-cljs.github.io/docs/UsersGuide.html#project-install
+
+------------------------------------------------------------------------------
+shadow-cljs - config: /Users/paulcristian/Projects/zgen/wizard-screenshots/shadow-cljs.edn
+shadow-cljs - server version: 2.28.10 running at http://localhost:9630
+shadow-cljs - nREPL server started on port 57849
+shadow-cljs - watching build :backend
+[:backend] Configuring build.
+[:backend] Compiling ...
+[:backend] Build completed. (113 files, 1 compiled, 5 warnings, 1.39s)
+
+[1m------ WARNING #1 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:31:22
+--------------------------------------------------------------------------------
+[2m  28 |   (let [data (atom {})][0m
+[2m  29 |     (-> (puppeteer/launch)[0m
+[2m  30 |         (.then (fn [browser][0m
+[1m  31 |                  (-> (.newPage browser)[0m
+----------------------------^---------------------------------------------------
+ [33;1mCannot infer target type in expression (. browser newPage)[0m
+--------------------------------------------------------------------------------
+[2m  32 |                      (.then (fn [page][0m
+[2m  33 |                               (let [app (.goto page url)[0m
+[2m  34 |                                     class (str "." class)[0m
+[2m  35 |                                     finished-channel (chan)] [0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #2 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:33:41
+--------------------------------------------------------------------------------
+[2m  30 |         (.then (fn [browser][0m
+[2m  31 |                  (-> (.newPage browser)[0m
+[2m  32 |                      (.then (fn [page][0m
+[1m  33 |                               (let [app (.goto page url)[0m
+-----------------------------------------------^--------------------------------
+ [33;1mCannot infer target type in expression (. page goto url)[0m
+--------------------------------------------------------------------------------
+[2m  34 |                                     class (str "." class)[0m
+[2m  35 |                                     finished-channel (chan)] [0m
+[2m  36 |                                 (-> app[0m
+[2m  37 |                                     (.then #(wait 1000)) [0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #3 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:38:45
+--------------------------------------------------------------------------------
+[2m  35 |                                     finished-channel (chan)] [0m
+[2m  36 |                                 (-> app[0m
+[2m  37 |                                     (.then #(wait 1000)) [0m
+[1m  38 |                                     (.then #(.$$ page class)) ; Select the div[0m
+---------------------------------------------------^----------------------------
+ [33;1mCannot infer target type in expression (. page $$ class)[0m
+--------------------------------------------------------------------------------
+[2m  39 |                                     (.then (fn [elements] [0m
+[2m  40 |                                              (let [element-count (count elements)] [0m
+[2m  41 |                                                (go-loop [index 0] [0m
+[2m  42 |                                                  (if (< index element-count)[0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #4 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:41:48
+--------------------------------------------------------------------------------
+[2m  38 |                                     (.then #(.$$ page class)) ; Select the div[0m
+[2m  39 |                                     (.then (fn [elements] [0m
+[2m  40 |                                              (let [element-count (count elements)] [0m
+[1m  41 |                                                (go-loop [index 0] [0m
+------------------------------------------------------^-------------------------
+ [33;1mCannot infer target type in expression (. inst_15127 (screenshot inst_15130))[0m
+--------------------------------------------------------------------------------
+[2m  42 |                                                  (if (< index element-count)[0m
+[2m  43 |                                                    (let [file-name (str index ".png")[0m
+[2m  44 |                                                          file-path (str "screenshots/" file-name)[0m
+[2m  45 |                                                          make-screenshot (<p! (.screenshot[0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #5 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:85:25
+--------------------------------------------------------------------------------
+[2m  82 |     (.post app  "/url"[0m
+[2m  83 |           (fn [req res][0m
+[2m  84 |             (let [url (-> req .-body .-url)[0m
+[1m  85 |                   class (-> req .-body .-class)] [0m
+-------------------------------^------------------------------------------------
+ [33;1mCannot infer target type in expression (. (.-body req) -class)[0m
+--------------------------------------------------------------------------------
+[2m  86 |               (.log js/console "Taking screenshots of: " url [0m
+[2m  87 |                     " "  (js/Date.now))[0m
+[2m  88 |               (try (run-puppeteer [0m
+[2m  89 |                     {:res res [0m
+--------------------------------------------------------------------------------
+[:backend] Compiling ...
+[:backend] Build completed. (113 files, 1 compiled, 5 warnings, 0.07s)
+
+[1m------ WARNING #1 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:31:22
+--------------------------------------------------------------------------------
+[2m  28 |   (let [data (atom {})][0m
+[2m  29 |     (-> (puppeteer/launch)[0m
+[2m  30 |         (.then (fn [browser][0m
+[1m  31 |                  (-> (.newPage browser)[0m
+----------------------------^---------------------------------------------------
+ [33;1mCannot infer target type in expression (. browser newPage)[0m
+--------------------------------------------------------------------------------
+[2m  32 |                      (.then (fn [page][0m
+[2m  33 |                               (let [app (.goto page url)[0m
+[2m  34 |                                     class (str "." class)[0m
+[2m  35 |                                     finished-channel (chan)] [0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #2 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:33:41
+--------------------------------------------------------------------------------
+[2m  30 |         (.then (fn [browser][0m
+[2m  31 |                  (-> (.newPage browser)[0m
+[2m  32 |                      (.then (fn [page][0m
+[1m  33 |                               (let [app (.goto page url)[0m
+-----------------------------------------------^--------------------------------
+ [33;1mCannot infer target type in expression (. page goto url)[0m
+--------------------------------------------------------------------------------
+[2m  34 |                                     class (str "." class)[0m
+[2m  35 |                                     finished-channel (chan)] [0m
+[2m  36 |                                 (-> app[0m
+[2m  37 |                                     (.then #(wait 1000)) [0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #3 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:38:45
+--------------------------------------------------------------------------------
+[2m  35 |                                     finished-channel (chan)] [0m
+[2m  36 |                                 (-> app[0m
+[2m  37 |                                     (.then #(wait 1000)) [0m
+[1m  38 |                                     (.then #(.$$ page class)) ; Select the div[0m
+---------------------------------------------------^----------------------------
+ [33;1mCannot infer target type in expression (. page $$ class)[0m
+--------------------------------------------------------------------------------
+[2m  39 |                                     (.then (fn [elements] [0m
+[2m  40 |                                              (let [element-count (count elements)] [0m
+[2m  41 |                                                (go-loop [index 0] [0m
+[2m  42 |                                                  (if (< index element-count)[0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #4 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:41:48
+--------------------------------------------------------------------------------
+[2m  38 |                                     (.then #(.$$ page class)) ; Select the div[0m
+[2m  39 |                                     (.then (fn [elements] [0m
+[2m  40 |                                              (let [element-count (count elements)] [0m
+[1m  41 |                                                (go-loop [index 0] [0m
+------------------------------------------------------^-------------------------
+ [33;1mCannot infer target type in expression (. inst_15240 (screenshot inst_15243))[0m
+--------------------------------------------------------------------------------
+[2m  42 |                                                  (if (< index element-count)[0m
+[2m  43 |                                                    (let [file-name (str index ".png")[0m
+[2m  44 |                                                          file-path (str "screenshots/" file-name)[0m
+[2m  45 |                                                          make-screenshot (<p! (.screenshot[0m
+--------------------------------------------------------------------------------
+
+[1m------ WARNING #5 - :infer-warning ---------------------------------------------[0m
+ File: /Users/paulcristian/Projects/zgen/wizard-screenshots/source-code/backend/server.cljs:85:25
+--------------------------------------------------------------------------------
+[2m  82 |     (.post app  "/url"[0m
+[2m  83 |           (fn [req res][0m
+[2m  84 |             (let [url (-> req .-body .-url)[0m
+[1m  85 |                   class (-> req .-body .-class)] [0m
+-------------------------------^------------------------------------------------
+ [33;1mCannot infer target type in expression (. (.-body req) -class)[0m
+--------------------------------------------------------------------------------
+[2m  86 |               (.log js/console "Taking screenshots of: " url [0m
+[2m  87 |                     " "  (js/Date.now))[0m
+[2m  88 |               (try (run-puppeteer [0m
+[2m  89 |                     {:res res [0m
+--------------------------------------------------------------------------------
+[:backend] Compiling ...
+[:backend] Build failure:
+FileNotFoundException: resources/backend/core.js (No such file or directory)
+	java.io.FileOutputStream.open0 (FileOutputStream.java:-2)
+	java.io.FileOutputStream.open (FileOutputStream.java:293)
+	java.io.FileOutputStream.<init> (FileOutputStream.java:235)
+	clojure.java.io/fn--11619 (io.clj:230)
+	clojure.java.io/fn--11619 (io.clj:230)
+	clojure.java.io/fn--11543/G--11525--11550 (io.clj:69)
+	clojure.java.io/fn--11593 (io.clj:166)
+	clojure.java.io/fn--11593 (io.clj:166)
+	clojure.java.io/fn--11556/G--11521--11563 (io.clj:69)
+	clojure.java.io/writer (io.clj:119)
+	clojure.java.io/writer (io.clj:104)
+	clojure.core/apply (core.clj:669)
+	clojure.core/spit (core.clj:7021)
+	clojure.core/spit (core.clj:7021)
+	shadow.build.node/flush-unoptimized/fn--17141 (node.clj:203)
+	shadow.build.node/flush-unoptimized (node.clj:123)
+	shadow.build.node/flush-unoptimized (node.clj:107)
+	shadow.build.targets.node-script/flush (node_script.clj:63)
+	shadow.build.targets.node-script/flush (node_script.clj:60)
+	shadow.build.targets.node-script/process (node_script.clj:84)
+	shadow.build.targets.node-script/process (node_script.clj:67)
+	clojure.lang.Var.invoke (Var.java:384)
+	shadow.build/process-stage/fn--14239 (build.clj:163)
+	shadow.build/process-stage (build.clj:160)
+	shadow.build/process-stage (build.clj:152)
+	shadow.build/flush (build.clj:543)
+	shadow.build/flush (build.clj:537)
+	shadow.cljs.devtools.server.worker.impl/build-compile (impl.clj:369)
+	shadow.cljs.devtools.server.worker.impl/build-compile (impl.clj:349)
+	shadow.cljs.devtools.server.worker.impl/do-resource-update (impl.clj:540)
+	shadow.cljs.devtools.server.worker.impl/do-resource-update (impl.clj:495)
+	shadow.cljs.devtools.server.util/server-thread/fn--15434/fn--15435/fn--15443 (util.clj:283)
+	shadow.cljs.devtools.server.util/server-thread/fn--15434/fn--15435 (util.clj:282)
+	shadow.cljs.devtools.server.util/server-thread/fn--15434 (util.clj:255)
+	java.lang.Thread.run (Thread.java:833)
+
