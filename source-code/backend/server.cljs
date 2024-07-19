@@ -26,27 +26,31 @@
 
 (defn run-puppeteer [{:keys [url class res]}]
   (let [data (atom {})]
-    (-> (puppeteer/launch)
-        (.then (fn [browser]
+    (-> (puppeteer/launch #js {:executablePath "/usr/bin/chromium"
+                               :args #js ["--no-sandbox" "--disable-setuid-sandbox"]})
+        (.then (fn [^js browser]
                  (-> (.newPage browser)
-                     (.then (fn [page]
-                              (let [app (.goto page url)
-                                    class (str "." class)
+                     (.then (fn [^js page]
+                              (let [app (try (.goto page url) 
+                                             (catch js/Error e (println "Error in url load")))
+                                    dom-class (str "." class)
                                     finished-channel (chan)] 
+                                (println "Class is: " dom-class)
                                 (-> app
                                     (.then #(wait 1000)) 
-                                    (.then #(.$$ page class)) ; Select the div
-                                    (.then (fn [elements] 
+                                    (.then #(.$$ page dom-class)) ; Select the div
+                                    (.then (fn [^js elements] 
                                              (let [element-count (count elements)] 
                                                (go-loop [index 0] 
                                                  (if (< index element-count)
                                                    (let [file-name (str index ".png")
                                                          file-path (str "screenshots/" file-name)
-                                                         make-screenshot (<p! (.screenshot
-                                                                               (get elements index)
-                                                                               #js{:path file-path}))
-                                                         base64-image (.toString (fs/readFileSync file-path)
-                                                                                 "base64")]
+                                                         make-screenshot (<p! 
+                                                                          (let [^js element (get elements index)]
+                                                                            (.screenshot element 
+                                                                                         #js{:path file-path})))
+                                                         ^js image    (fs/readFileSync file-path)
+                                                         base64-image (.toString image "base64")]
                                                      
                                                      (reset! data (assoc @data file-name base64-image)) 
                                                      (recur (inc index)))
@@ -80,11 +84,12 @@
               :class "section"})
             (.send res "Puppeteer API"))) 
     (.post app  "/url"
-          (fn [req res]
+          (fn [^js req ^js res]
             (let [url (-> req .-body .-url)
                   class (-> req .-body .-class)] 
               (.log js/console "Taking screenshots of: " url 
-                    " "  (js/Date.now))
+                    " "  (js/Date.now) "with class: " class)
+              (.log js/console "Body: " (.-body req))
               (try (run-puppeteer 
                     {:res res 
                      :url url

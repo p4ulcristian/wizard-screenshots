@@ -2,3 +2,6 @@
 resources/backend/node_modules
 resources/backend/.DS_Store
 resources/backend/shadow-cljs.log
+.clj-kondo
+.lsp
+resources/backend/core.js
