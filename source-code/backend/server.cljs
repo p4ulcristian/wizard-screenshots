@@ -81,8 +81,7 @@
             (run-puppeteer 
              {:res res
               :url "https://alpha.wizard.xyz/scroll/d704f634-5b3f-4099-aa22-dc7c61bee23e?version=1720152785349"
-              :class "section"})
-            (.send res "Puppeteer API"))) 
+              :class "section"}))) 
     (.post app  "/url"
           (fn [^js req ^js res]
             (let [url (-> req .-body .-url)
@@ -94,7 +93,7 @@
                     {:res res 
                      :url url
                      :class class})
-                   (catch js/Error e (.send res "Error")))))) 
+                   (catch js/Error e (.log js/console "Error in puppeteer: " e)))))) 
     
     (.listen app new-port "::" "0.0.0.0" 
              (fn [] (println "Port: " new-port)))))
