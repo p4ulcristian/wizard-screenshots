@@ -36,7 +36,7 @@
                                     dom-class (str "." class)
                                     finished-channel (chan)] 
                                 (-> app
-                                    (.then #(wait 1000)) 
+                                    (.then #(wait 2000)) 
                                     (.then #(.$$ page dom-class)) ; Select the div
                                     (.then (fn [^js elements] 
                                              (let [element-count (count elements)] 
