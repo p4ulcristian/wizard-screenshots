@@ -35,7 +35,6 @@
                                              (catch js/Error e (println "Error in url load")))
                                     dom-class (str "." class)
                                     finished-channel (chan)] 
-                                (println "Class is: " dom-class)
                                 (-> app
                                     (.then #(wait 1000)) 
                                     (.then #(.$$ page dom-class)) ; Select the div
@@ -57,6 +56,7 @@
                                                    (>! finished-channel 1))))))
                                     (go (<! finished-channel)                          
                                         (.close browser) 
+                                        (println "Sending response: ")
                                         (.send res (str @data))
                                         ))))))))
         (.catch #(js/console.error %)))))
