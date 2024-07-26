@@ -27,7 +27,10 @@
 (defn run-puppeteer [{:keys [url class res]}]
   (let [data (atom {})]
     (-> (puppeteer/launch #js {:executablePath "/usr/bin/chromium"
-                               :args #js ["--no-sandbox" "--disable-setuid-sandbox"]})
+                               :args #js ["--no-sandbox" 
+                                          "--disable-setuid-sandbox"
+                                          "--font-render-hinting=none"
+                                          "--force-color-profile=srgb"]})
         (.then (fn [^js browser]
                  (-> (.newPage browser)
                      (.then (fn [^js page]
