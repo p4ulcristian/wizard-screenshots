@@ -29,8 +29,7 @@
     (-> (puppeteer/launch #js {:executablePath "/usr/bin/chromium"
                                :args #js ["--no-sandbox" 
                                           "--disable-setuid-sandbox"
-                                          "--font-render-hinting=none"
-                                          "--force-color-profile=srgb"]})
+                                          "--font-render-hinting=none"]})
         (.then (fn [^js browser]
                  (-> (.newPage browser)
                      (.then (fn [^js page]
